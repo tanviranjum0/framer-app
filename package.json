@@ -16,6 +16,7 @@
     "framesync": "^6.1.2",
     "image-to-base64": "^2.2.0",
     "lucide-react": "^0.541.0",
+    "mongodb": "^6.20.0",
     "mongoose": "^8.19.1",
     "motion": "^12.23.12",
     "next": "15.4.5",

@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       secure: false,
       auth: {
         user: "tanviranjum010@gmail.com",
-        pass: "ejnhwhjgrwkpecsk",
+        pass: process.env.GMAIL_PASS,
       },
     });
     async function sendMail() {
