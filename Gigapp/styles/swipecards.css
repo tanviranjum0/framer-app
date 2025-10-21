@@ -1,0 +1,34 @@
+.swipecontainer {
+  overscroll-behavior-y: contain;
+  background-image: url("../../public/dragCompBg.jpg");
+  background-size: cover;
+  background-position: center;
+  width: "100%";
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.card {
+  position: absolute;
+  top: calc(50% - 40vh);
+  left: calc(50vw - 10vw);
+  cursor: grab;
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 40vh;
+  height: 80vh;
+  will-change: transform;
+  border-radius: 10px;
+  pointer-events: all;
+  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4),
+    0 10px 10px -10px rgba(50, 50, 73, 0.3);
+}

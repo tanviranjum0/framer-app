@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Story+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&family=Dancing+Script:wght@400..700&family=Story+Script&display=swap");
+@import "tailwindcss";
+@theme {
+  --font-story: "Story Script", sans-serif;
+  --font-dancing: "Dancing Script", sans-serif;
+  --font-boldonse: "Boldonse", sans-serif;
+}
+
+/* Navbar */
+:root {
+  --blur: 20px;
+  --max: 870px;
+  --min: 0px;
+  --url: "https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=71fe1cccc16ab8dbd431de076c68802b";
+}
+
+.btn {
+  width: 280px;
+  height: 56px;
+  flex-shrink: 0;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+
+  &:before {
+    content: "";
+    padding: 100%;
+    background: url("../public/test1.jpeg") no-repeat;
+    /* background: #003631; */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50%;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 9;
+  }
+
+  &#btn-1 {
+    &:before {
+      transition: all 0.3s ease;
+    }
+
+    &:hover:before {
+      -webkit-filter: blur(var(--blur));
+      filter: blur(var(--blur));
+    }
+  }
+}
+
+/* From Uiverse.io by lenfear23 */
+.btn2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  /* width: 100px;
+  height: 30px; */
+  background-image: linear-gradient(
+    to top,
+    #014d45 0%,
+    #014d45 80%,
+    #014d45 100%
+  );
+  border-radius: 30px;
+  border: 0.5px solid black;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8b8686;
+  /* color: #606060; */
+  /* text-shadow: 0 1px #fff; */
+}
+
+.btn2:hover {
+  box-shadow: 0 4px 3px 1px #002e2a, 0 6px 8px #002e2a, 0 -4px 4px #002e2a,
+    0 -6px 4px #002e2a, inset 0 0 3px 3px #002e2a;
+}
+
+.btn2:active {
+  box-shadow: 0 4px 3px 1px #002e2a, 0 6px 8px #002e2a, 0 -4px 4px #002e2a,
+    0 -6px 4px #002e2a, inset 0 0 5px 3px #002e2a, inset 0 0 30px #013732;
+}
+
+.btn2:focus {
+  box-shadow: 0 4px 3px 1px #014d45, 0 6px 8px #014d45, 0 -4px 4px #014d45,
+    0 -6px 4px #014d45, inset 0 0 5px 3px #014d45, inset 0 0 30px #024740;
+}
+/* footer */
+.footerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  background-image: oklch(78.9% 0.154 211.53);
+  border-radius: 5px;
+  border: 0.5px solid rgba(238, 239, 244, 0.45);
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffffc5;
+}
+
+.footerBtn:active {
+  box-shadow: 0 2px 1.5px 1px oklch(46.888% 0.18024 359.082 / 0.471),
+    0 1.5px 2px oklch(42.533% 0.22178 287.753 / 0.302),
+    0 -2px 2px oklch(72.453% 0.23222 143.488 / 0.326),
+    0 -3px 2px oklch(54.191% 0.09217 211.676),
+    inset 0 0 2.5px 1.5px oklch(51.757% 0.09989 165.324),
+    inset 0 0 15px oklch(49.995% 0.10955 63.103);
+}
+
+/* Live Indicator */
+.live-indicator-block {
+  transform: translate(-50%, -50%);
+}
+.live-indicator-block .live-indicator {
+  background: red;
+  color: white;
+  padding: 6px 7px;
+  line-height: 1;
+  border-radius: 6px;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: bold;
+  width: auto;
+}
+.live-indicator-block .live-indicator .blink {
+  animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+  font-size: 10px;
+  margin-right: 5px;
+  vertical-align: baseline;
+}
+@keyframes blinker {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Contact Us Button */
+/* From Uiverse.io by cssbuttons-io */
+#contactButton {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+#contactButton.contactButton-contact {
+  width: 20rem;
+  height: auto;
+}
+
+#contactButton.contactButton-contact .contactButtoncircle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #014a43;
+  border-radius: 1.625rem;
+}
+
+#contactButton.contactButton-contact .contactButtoncircle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+#contactButton.contactButton-contact .contactButtoncircle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+#contactButton.contactButton-contact .contactButtoncircle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+#contactButton.contactButton-contact .contact-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#contactButton:hover .contactButtoncircle {
+  width: 100%;
+}
+
+#contactButton:hover .contactButtoncircle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+#contactButton:hover .contact-text {
+  color: #fff;
+}
+
+/*  Hidden Images */
+
+.bg-image-hidden-images {
+  background: url("../public/Nature/sky.png") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 50%;
+  width: 100%;
+  height: 100vh;
+}
+
+.bg-image-footer {
+  background: url("../public/footerBackground.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 50%;
+  width: 100%;
+  height: 100vh;
+}
