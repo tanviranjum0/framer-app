@@ -25,7 +25,7 @@ const LiquidRippleButton = ({ inText }: { inText: string }) => {
     const x = event.clientX - rect.left - size / 2;
     const y = event.clientY - rect.top - size / 2;
 
-    // Add new ripple
+    Add new ripple
     const newRipple = {
       id: nextId.current++,
       x,
