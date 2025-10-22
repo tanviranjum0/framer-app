@@ -4,7 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 // import { imageToBase64 } from "@/utils/base64toImage";
 
-const Path = (props: { props: React.SVGAttributes<SVGPathElement> }) => (
+interface PathProps extends React.ComponentProps<typeof motion.path> {}
+
+const Path: React.FC<PathProps> = (props: PathProps) => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
@@ -14,7 +16,7 @@ const Path = (props: { props: React.SVGAttributes<SVGPathElement> }) => (
   />
 );
 
-const CloseButton = ({ close }) => (
+const CloseButton = ({ close }: { close: () => void }) => (
   <button
     onClick={close}
     className="absolute top-3.5 right-2.5  bg-white border-none"

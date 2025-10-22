@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { addNewNotification } from "./Notification";
 import { imageToBase64 } from "@/utils/base64toImage";
 const Footer = () => {
+  const [sending, setSending] = useState<boolean>(false);
   const [service, setService] = useState<string>("Consulting");
   const [budget, setBudget] = useState("0k");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -23,21 +24,29 @@ const Footer = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
+    setSending(true);
     try {
       const name = document.getElementById("name") as HTMLInputElement;
       const email = document.getElementById("email") as HTMLInputElement;
       const message = document.getElementById("message") as HTMLInputElement;
-      const image = document.getElementById("dropzone-file")
-        ?.files[0] as HTMLInputElement;
+
+      let image;
+      const fileInput = document.getElementById("dropzone-file");
+      if (fileInput instanceof HTMLInputElement && fileInput.files) {
+        for (const file of fileInput.files) {
+          image = file;
+        }
+      }
 
       if (!name.value || !email.value || !message.value) {
+        setSending(false);
         return addNewNotification({
           message: "Please fill all required fields.",
           type: "error",
         });
       }
       if (!/\S+@\S+\.\S+/.test(email.value)) {
+        setSending(false);
         return addNewNotification({
           message: "Please enter a valid email address.",
           type: "error",
@@ -67,14 +76,16 @@ const Footer = () => {
           body: formData,
         });
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (data.success) {
-          return addNewNotification({
+          setSending(false);
+          addNewNotification({
             message: "Message Sent! Thanks.",
             type: "success",
           });
         } else {
-          return addNewNotification({
+          setSending(false);
+          addNewNotification({
             message: "There was a problem sending message",
             type: "error",
           });
@@ -82,11 +93,13 @@ const Footer = () => {
       };
       apiCall();
     } catch {
+      setSending(false);
       addNewNotification({
         message: "Something Went Wrong",
         type: "error",
       });
     }
+    setSending(false);
   };
   return (
     <div className=" bg-image-footer">
@@ -309,12 +322,38 @@ const Footer = () => {
                     </label>
                   </div>
                 </div>
-                <button
-                  onClick={(e) => handleSubmit(e)}
-                  className="rounded-full cursor-pointer min-w-max sm:w-full border-2  border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px]  hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
-                >
-                  Submit Inquiry
-                </button>
+
+                {sending == true ? (
+                  <div
+                    className="rounded-full cursor-pointer min-w-max sm:w-full border-2  border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px]  hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none flex justify-center"
+                    role="status"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-300"
+                      viewBox="0 0 100 101"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                        fill="currentFill"
+                      />
+                    </svg>
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  <button
+                    onClick={(e) => handleSubmit(e)}
+                    className="rounded-full cursor-pointer min-w-max sm:w-full border-2  border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px]  hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none"
+                  >
+                    Submit Inquiry
+                  </button>
+                )}
               </form>
             </div>
           </div>

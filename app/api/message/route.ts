@@ -27,6 +27,7 @@ export async function GET(request: Request) {
 export async function POST(request: NextRequest) {
   try {
     const FormData = await request.formData(); // Assuming JSON body
+
     const body: DataBody = {
       service: FormData.get("service"),
       budget: FormData.get("budget"),
@@ -35,10 +36,10 @@ export async function POST(request: NextRequest) {
       message: FormData.get("message"),
       isValidImage: FormData.get("isValidImage") === "true" ? true : false,
     };
+
     if (FormData.get("image")) {
       body.image = FormData.get("image");
     }
-
     await Db.connect();
     const message = await Message.create(body);
     await Db.disconnect();
@@ -47,7 +48,7 @@ export async function POST(request: NextRequest) {
       port: 587,
       secure: false,
       auth: {
-        user: "tanviranjum010@gmail.com",
+        user: process.env.NODEMAILER_GMAIL,
         pass: process.env.GMAIL_PASS,
       },
     });
@@ -59,17 +60,17 @@ export async function POST(request: NextRequest) {
         text: "I will be reach you out as soon as possible",
       });
 
-      console.log("Message sent: %s", info.messageId);
+      // console.log("Message sent: %s", info.messageId);
     }
     async function selfmail() {
       const info = await transporter.sendMail({
-        from: '"Hey There!!" <Tanviranjum010@gmail,com>',
+        from: '"Hey There!!" <Tanviranjum010@gmail.com>',
         to: `tanvirsavagee@gmail.com`,
         subject: "New visitor message",
-        text: `Email Address : ${body.email} Message:${body.message}`,
+        text: `Email Address : ${body.email} Message:${body.message} ${message}`,
       });
 
-      console.log("Message sent: %s", info.messageId);
+      // console.log("Message sent: %s", info.messageId);
     }
 
     await sendMail().catch(console.error);
