@@ -34,6 +34,7 @@ const LiquidRippleButton = ({ inText }: { inText: string }) => {
     };
     console.log(newRipple);
     setRipples((prev) => [...prev, newRipple]);
+    document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const clearRipple = (id: number) => {
@@ -41,37 +42,35 @@ const LiquidRippleButton = ({ inText }: { inText: string }) => {
   };
 
   return (
-    <div>
-      <motion.button
-        className="bg-linear-65 from-teal-200 to-teal-400"
-        ref={buttonRef}
-        style={styles.button}
-        onClick={createRipple}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {inText}
-        {ripples.map((ripple) => (
-          <motion.span
-            key={ripple.id}
-            style={{
-              ...styles.ripple,
-              left: ripple.x,
-              top: ripple.y,
-              width: ripple.size,
-              height: ripple.size,
-            }}
-            initial={{ scale: 0, opacity: 0.7 }}
-            animate={{ scale: 2, opacity: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            onAnimationComplete={() => clearRipple(ripple.id)}
-          />
-        ))}
-      </motion.button>
-    </div>
+    <motion.button
+      className="bg-linear-65 from-teal-200 to-teal-400"
+      ref={buttonRef}
+      style={styles.button}
+      onClick={createRipple}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      {inText}
+      {ripples.map((ripple) => (
+        <motion.span
+          key={ripple.id}
+          style={{
+            ...styles.ripple,
+            left: ripple.x,
+            top: ripple.y,
+            width: ripple.size,
+            height: ripple.size,
+          }}
+          initial={{ scale: 0, opacity: 0.7 }}
+          animate={{ scale: 2, opacity: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          onAnimationComplete={() => clearRipple(ripple.id)}
+        />
+      ))}
+    </motion.button>
   );
 };
 

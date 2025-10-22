@@ -100,10 +100,9 @@ const Footer = () => {
         type: "error",
       });
     }
-    // setSending(false);
   };
   return (
-    <div className="bg-image-footer">
+    <div id="footer" className="bg-image-footer ">
       <div className="h-[85vh] text-white -z-10 box-border w-full  flex justify-center items-center">
         <motion.div
           ref={mainContainer}

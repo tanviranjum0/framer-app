@@ -253,7 +253,7 @@ const SpringControls = () => {
                 // document.execCommand("copy"); // Copy the selected range
               }
             }}
-            className="bg-gray-600 text-sm overflow-y-scroll overflow-x-hidden text-white p-[10px] h-[10rem] col-span-2 rounded-xl"
+            className="bg-gray-600 text-sm overflow-y-hidden overflow-x-hidden text-white p-[10px] h-[10rem] col-span-2 rounded-xl"
           >
             <div className="relative">
               {copied ? (
@@ -270,7 +270,7 @@ const SpringControls = () => {
             </div>
             const transition = {"{"}
             <br></br>
-            <div>type : &apso;spring&apso;,</div>
+            <div>type : 'spring',</div>
             <div> {sdm.stiffness !== 0 && `stiffness : ${sdm.stiffness},`}</div>
             <div> {sdm.mass !== 0 && `mass : ${sdm.mass},`}</div>
             <div> {sdm.damping !== 0 && `damping : ${sdm.damping},`}</div>
