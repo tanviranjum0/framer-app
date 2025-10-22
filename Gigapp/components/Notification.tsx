@@ -63,7 +63,7 @@ const Notification = () => {
     setNotifications(newArr);
   };
   return (
-    <div className="h-[100vh] w-[100vw] flex flex-col">
+    <div className=" flex flex-col">
       <ul className="fixed right-0 top-0  bottom-0 flex flex-col list-none justify-end">
         <AnimatePresence initial={false} mode="popLayout">
           {notifications?.map((noti, index) => {

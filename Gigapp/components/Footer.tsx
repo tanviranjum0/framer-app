@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from "react";
 import { addNewNotification } from "./Notification";
 import { imageToBase64 } from "@/utils/base64toImage";
+import "../styles/footerLoadingButton.css";
 const Footer = () => {
   const [sending, setSending] = useState<boolean>(false);
   const [service, setService] = useState<string>("Consulting");
@@ -99,10 +100,10 @@ const Footer = () => {
         type: "error",
       });
     }
-    setSending(false);
+    // setSending(false);
   };
   return (
-    <div className=" bg-image-footer">
+    <div className="bg-image-footer">
       <div className="h-[85vh] text-white -z-10 box-border w-full  flex justify-center items-center">
         <motion.div
           ref={mainContainer}
@@ -325,10 +326,10 @@ const Footer = () => {
 
                 {sending == true ? (
                   <div
-                    className="rounded-full cursor-pointer min-w-max sm:w-full border-2  border-black bg-white px-6 py-3 font-semibold uppercase text-black transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px]  hover:shadow-[4px_4px_0px_black] active:translate-x-[0px] active:translate-y-[0px] active:rounded-2xl active:shadow-none flex justify-center"
+                    className="rounded-full cursor-pointer min-w-max sm:w-full border-2  border-black bg-white px-6 py-3 font-semibold uppercase text-black  flex justify-center"
                     role="status"
                   >
-                    <svg
+                    {/* <svg
                       aria-hidden="true"
                       className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-300"
                       viewBox="0 0 100 101"
@@ -344,7 +345,16 @@ const Footer = () => {
                         fill="currentFill"
                       />
                     </svg>
-                    <span className="sr-only">Loading...</span>
+                    <span className="sr-only">Loading...</span> */}
+                    <div className="loader w-8 h-8">
+                      <div className="loader-square"></div>
+                      <div className="loader-square"></div>
+                      <div className="loader-square"></div>
+                      <div className="loader-square"></div>
+                      <div className="loader-square"></div>
+                      <div className="loader-square"></div>
+                      <div className="loader-square"></div>
+                    </div>
                   </div>
                 ) : (
                   <button

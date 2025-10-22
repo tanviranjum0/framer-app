@@ -31,7 +31,6 @@ const Gigapp = () => {
       <SpringControls />
       <PageTransitions />
       <Footer />
-      {/* <div className="h-[100vh] bg-amber-300"></div> */}
     </div>
   );
 };
