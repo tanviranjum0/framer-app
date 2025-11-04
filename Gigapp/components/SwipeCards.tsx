@@ -13,12 +13,12 @@ import {
 import "../styles/swipecards.css";
 
 const cards = [
-  "https://res.cloudinary.com/tanviranjum/image/upload/v1758718534/websiteThree2_e75opo.jpg",
-  "https://res.cloudinary.com/tanviranjum/image/upload/v1758718531/websiteThree1_l6yjwp.jpg",
-  "https://res.cloudinary.com/tanviranjum/image/upload/v1758718531/website4_rxbdhq.jpg",
-  "https://res.cloudinary.com/tanviranjum/image/upload/v1758718529/website3_nflnyu.jpg",
-  "https://res.cloudinary.com/tanviranjum/image/upload/v1758718531/website1_ug5vhd.jpg",
-  "https://res.cloudinary.com/tanviranjum/image/upload/v1758718536/website2_g9z5ag.jpg",
+  "https://res.cloudinary.com/tanviranjum/image/upload/v1762261928/website3_xrfkro.jpg",
+  "https://res.cloudinary.com/tanviranjum/image/upload/v1762261939/website1_yuft1t.jpg",
+  "https://res.cloudinary.com/tanviranjum/image/upload/v1762261938/websiteTwo2_xroedc.png",
+  "https://res.cloudinary.com/tanviranjum/image/upload/v1762261937/websiteTwo1_ujyk02.png",
+  "https://res.cloudinary.com/tanviranjum/image/upload/v1762261928/website4_eogcnq.jpg",
+  "https://res.cloudinary.com/tanviranjum/image/upload/v1762261927/website2_phk0ge.jpg",
 ];
 
 const transition = { type: "spring", stiffness: 300, damping: 50 };
@@ -341,7 +341,6 @@ function CardDesk() {
           </div>
         </div>
       </motion.div>
-      {/* <div className="h-[100vh] bg-orange-400 mt-[100vh]"></div> */}
     </div>
   );
 }
