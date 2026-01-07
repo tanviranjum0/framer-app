@@ -32,7 +32,6 @@ const LiquidRippleButton = ({ inText }: { inText: string }) => {
       y,
       size,
     };
-    console.log(newRipple);
     setRipples((prev) => [...prev, newRipple]);
     document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
   };

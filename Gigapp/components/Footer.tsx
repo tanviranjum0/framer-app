@@ -77,7 +77,6 @@ const Footer = () => {
           body: formData,
         });
         const data = await res.json();
-        // console.log(data);
         if (data.success) {
           setSending(false);
           addNewNotification({

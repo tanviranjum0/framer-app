@@ -70,7 +70,6 @@ function ImageMouseTrail({
     const relativeY = y - (containerRect?.top ?? 0);
     image.style.left = `${relativeX}px`;
     image.style.top = `${relativeY}px`;
-    console.log(refs.current[refs.current?.length - 1]);
 
     if (currentZIndexRef.current > 40) {
       currentZIndexRef.current = 1;

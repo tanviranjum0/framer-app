@@ -15,10 +15,7 @@ const BackgroundRipple = () => {
             <span className="text-6xl"> Background cell animation</span> <br />
             with framer motions <span className="text-lime-600">.</span>
           </span>
-          <div
-            onClick={() => console.log("clicked")}
-            className="text-2xl cursor-not-allowed flex gap-3 justify-center items-center text-black h-14 bg-linear-65 from-teal-200 to-teal-400 w-[350px] my-3"
-          >
+          <div className="text-2xl cursor-not-allowed flex gap-3 justify-center items-center text-black h-14 bg-linear-65 from-teal-200 to-teal-400 w-[350px] my-3">
             Click on the right box.
             <Image src={fartImage} alt="fart image" height={50} width={50} />
           </div>
