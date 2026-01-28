@@ -1,6 +1,5 @@
 "use client";
 import Marquee from "react-fast-marquee";
-import React from "react";
 import { motion } from "motion/react";
 import Image, { StaticImageData } from "next/image";
 import img1 from "@/public/MarqueImages/web1.png";

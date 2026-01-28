@@ -83,7 +83,7 @@ function CardDesk() {
   const containerMargin = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0px", "40px"]
+    ["0px", "40px"],
   );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -100,20 +100,13 @@ function CardDesk() {
     const swipeX = swipePower(offset.x, velocity.x);
     const swipeY = swipePower(offset.y, velocity.y);
 
-    // If the strength of the swipe is not high enough, return
-    // since each card has the dragConstraints set, the card
-    // will animate back to its original position
     if (Math.abs(swipeX) < swipeThreshold && Math.abs(swipeY) < swipeThreshold)
       return;
 
-    // Keep track of cards that are dismissed
     gone.add(index);
 
-    // Animate the card away from the stack, using the offset
-    // of the drag multiplied by a force factor.
-    // This will slide the card away from the  stack
     await controls.start((i: number) => {
-      if (index !== i) return {}; // We're only interested in animating the current card
+      if (index !== i) return {};
       return {
         transition: {
           type: "spring",
@@ -125,18 +118,12 @@ function CardDesk() {
       };
     });
 
-    // If all cards are gone, simple rebuild the card stack after some delay has passed
     if (gone.size === cards.length) {
       gone.clear();
       await controls.start(item.main);
     }
   };
 
-  // Run the enter animation only once the component is mounted
-  // This is kind of what the variants API does, but we can't use
-  // variants here since we want the custom controls, thus, we
-  // mock what the variants API does and just animate from the
-  // enter animation to the main animation.
   useEffect(() => {
     async function startAnimation() {
       await controls.start(item.enter);
@@ -175,24 +162,11 @@ function CardDesk() {
           </div>
           <div className="text-2xl">is a race not a sprint</div>
         </div>
-        {/* Simply map over the number of cards and them. 
-          Each card is positioned absolute and centered on the 
-          screen so the cards stack. */}
         <div className="w-full">
           {Array(cards.length)
             .fill(null)
             .map((_, i) => (
               <div key={i + 10}>
-                {/* This is the card itself. We use the index as a `key` for the element
-                  and also inject it as `custom` property so we know which is which.
-                  Additionally, we provide our custom constrols to the `animate` prop 
-                  to manipulate the animation. We also provide a custom `transformTemplate`
-                  to include a perspective transform which is useful for a kind of 3D-Look.
-                  We enable `drag` on the element and set the `dragConstraints` to all zero
-                  while the `dragElastic` prop is 1. Thus, we can freely drag the item however
-                  we want, but in case or swipe is not strong enough, it will snap back into 
-                  its original place. We also set the background to some image and 
-                  animate the scale while we tap the element to simulate that we pick the element up. */}
                 <motion.div
                   key={i}
                   custom={i}

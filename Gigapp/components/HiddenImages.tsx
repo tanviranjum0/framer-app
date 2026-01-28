@@ -15,13 +15,13 @@ const HiddenImages = () => {
 
   const margin = useTransform(scrollYProgress, [0, 1], ["0px", "40px"]);
   const imageOne = useSpring(
-    useTransform(scrollYProgress, [0, 0.5], [0, -200])
+    useTransform(scrollYProgress, [0, 0.5], [0, -200]),
   );
   const imageTwo = useSpring(
-    useTransform(scrollYProgress, [0, 0.5], [0, -280])
+    useTransform(scrollYProgress, [0, 0.5], [0, -280]),
   );
   const imageThree = useSpring(
-    useTransform(scrollYProgress, [0, 0.5], [0, -360])
+    useTransform(scrollYProgress, [0, 0.5], [0, -360]),
   );
   return (
     <div

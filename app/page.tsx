@@ -1,5 +1,4 @@
 import Gigapp from "@/Gigapp/Gigapp";
-import React from "react";
 import Notification from "@/Gigapp/components/Notification";
 const page = () => {
   return (

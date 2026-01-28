@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import "./Gigapp.css";
 import Navbar from "./components/Navbar";
 import MarqueeComponent from "./components/MarqueeComponent";

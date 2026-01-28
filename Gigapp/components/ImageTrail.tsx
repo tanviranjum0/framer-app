@@ -109,21 +109,19 @@ function ImageMouseTrail({
   return (
     <section onMouseMove={handleOnMove} ref={containerRef}>
       {items.map((item, index) => (
-        <>
-          <Image
-            key={index + "imageImageMouseTrail"}
-            className={cn(
-              "object-fit rounded-2xl border-2 border-black  scale-0 opacity:0 data-[status='active']:scale-100 data-[status='active']:opacity-100 transition-transform data-[status='active']:duration-500 duration-300 data-[status='active']:ease-out-expo absolute -translate-y-[50%] max-h-40 max-w-fit -translate-x-[50%] "
-            )}
-            height={1000}
-            width={1000}
-            data-index={index}
-            data-status="active"
-            src={item}
-            alt={`image-${index}`}
-            ref={refs.current[index]}
-          />
-        </>
+        <Image
+          key={index + "imageImageMouseTrail"}
+          className={cn(
+            "object-fit rounded-2xl border-2 border-black  scale-0 opacity:0 data-[status='active']:scale-100 data-[status='active']:opacity-100 transition-transform data-[status='active']:duration-500 duration-300 data-[status='active']:ease-out-expo absolute -translate-y-[50%] max-h-40 max-w-fit -translate-x-[50%] ",
+          )}
+          height={1000}
+          width={1000}
+          data-index={index}
+          data-status="active"
+          src={item}
+          alt={`image-${index}`}
+          ref={refs.current[index]}
+        />
       ))}
       {children}
     </section>
