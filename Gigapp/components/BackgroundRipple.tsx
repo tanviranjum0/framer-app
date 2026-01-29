@@ -58,12 +58,12 @@ const BackgroundCellCore = () => {
     <div
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="h-[500px] w-[800px] right-0 absolute cursor-cell"
+      className="h-[500px] w-[800px] right-0 relative cursor-cell"
     >
-      <div className="absolute h-[500px] w-[800px] inset-y-0">
-        <div className="absolute h-[500px] w-[800px] pointer-events-none -bottom-2 z-40 bg-slate-950 [mask-image:linear-gradient(to_bottom,transparent,black)]"></div>
+      <div className="relative h-full w-full overflow-hidden">
+        <div className="absolute h-full w-full overflow-hidden pointer-events-none -bottom-2 z-40 bg-slate-950 [mask-image:linear-gradient(to_bottom,transparent,black)]"></div>
         <div
-          className="absolute inset-0 z-20 bg-transparent"
+          className="absolute inset-0 z-20"
           style={{
             maskImage: `radial-gradient(
             ${size / 4}px circle at center,
