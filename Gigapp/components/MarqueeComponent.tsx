@@ -180,7 +180,7 @@ const MarqueeComponent = () => {
             return (
               <Image
                 key={i + data.id}
-                className={`rounded-xl   mx-2`}
+                className={`rounded-xl mx-2`}
                 src={data.img}
                 alt={`Marque image ${data.id}`}
                 height={data.height}

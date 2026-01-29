@@ -4,8 +4,6 @@ import { motion, AnimatePresence, PanInfo } from "motion/react";
 import { wrap } from "@popmotion/popcorn";
 import "../styles/carousel.css";
 import Image from "next/image";
-
-// import { IMAGES } from "./Images";
 const IMAGES = [
   {
     id: 0,
