@@ -48,8 +48,8 @@ export async function POST(request: NextRequest) {
       port: 587,
       secure: false,
       auth: {
-        user: process.env.NODEMAILER_GMAIL,
-        pass: process.env.GMAIL_PASS,
+        user: process.env.NEXT_PUBLIC_NODEMAILER_GMAIL,
+        pass: process.env.NEXT_PUBLIC_GMAIL_PASS,
       },
     });
     async function sendMail() {
@@ -59,8 +59,6 @@ export async function POST(request: NextRequest) {
         subject: "Reply from Tanvir",
         text: "I will be reach you out as soon as possible",
       });
-
-      // console.log("Message sent: %s", info.messageId);
     }
     async function selfmail() {
       const info = await transporter.sendMail({
@@ -69,21 +67,19 @@ export async function POST(request: NextRequest) {
         subject: "New visitor message",
         text: `Email Address : ${body.email} Message:${body.message} ${message}`,
       });
-
-      // console.log("Message sent: %s", info.messageId);
     }
 
     await sendMail().catch(console.error);
     await selfmail().catch(console.error);
     return NextResponse.json(
       { message: message, success: true },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error processing POST request:", error);
     return NextResponse.json(
       { error: "Failed to process request", success: false },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

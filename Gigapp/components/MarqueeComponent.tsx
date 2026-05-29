@@ -148,7 +148,17 @@ const MarqueeComponent = () => {
         >
           Subscriptions or one-time projects.
         </motion.div>
-        <div className="flex w-full my-5 justify-center">
+        <div
+          onClick={() => {
+            const footer = document.getElementById("footer");
+            footer?.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+              inline: "nearest",
+            });
+          }}
+          className="flex w-full my-5 justify-center"
+        >
           <div id="contactButton" className="contactButton-contact">
             <span className="contactButtoncircle" aria-hidden="true">
               <span className="icon arrow"></span>

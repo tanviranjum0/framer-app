@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const connection = {};
 
-
 async function connect() {
   if (connection.isConnected) {
     return;
@@ -12,6 +11,7 @@ async function connect() {
     if (connection.isConnected === 1) {
       return;
     }
+
     await mongoose.disconnect();
   }
   const db = await mongoose.connect(process.env.MONGODB_URL);
@@ -20,7 +20,7 @@ async function connect() {
 
 async function disconnect() {
   if (connection.isConnected) {
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
       await mongoose.disconnect();
       connection.isConnected = false;
     } else {
