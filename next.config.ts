@@ -1,36 +1,52 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  reactStrictMode: true,
+
+  // Pin the workspace root. Without it Turbopack walks up past this repo
+  // and picks up an unrelated lockfile from a parent directory.
+  turbopack: { root: __dirname },
+
+  poweredByHeader: false,
+
   images: {
+    // AVIF first, WebP fallback. Cuts hero/gallery payload roughly in half
+    // versus the JPEG/PNG originals.
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [360, 480, 640, 828, 1080, 1280, 1600, 1920, 2560],
+    imageSizes: [48, 64, 96, 128, 192, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 365,
     remotePatterns: [
-      new URL(
-        "https://framerusercontent.com/images/NYXSuNHIqB6GMw7IXSDSqYLr8FM.gif"
-      ),
-      new URL(
-        "https://framerusercontent.com/images/YTx0Nilb6NZn0z5EnXtsE4s78.gif"
-      ),
-      new URL(
-        "https://framerusercontent.com/images/X3tpBaAWxasL0qWdEs8P1u6Q.gif"
-      ),
-      new URL(
-        "https://framerusercontent.com/images/X3tpBaAWxasL0qWdEs8P1u6Q.gif"
-      ),
-      new URL(
-        "https://images.unsplash.com/photo-1558981359-219d6364c9c8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ),
-      new URL(
-        "https://images.unsplash.com/photo-1725878746053-407492aa4034?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ),
-      new URL(
-        "https://images.unsplash.com/photo-1757383747751-d1c91fb276ea?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ),
-      new URL(
-        "https://images.unsplash.com/photo-1623841696408-10aec8ed6d44?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ),
-      new URL(
-        "https://images.unsplash.com/photo-1565982369439-2072eee9168a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      ),
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "framerusercontent.com" },
     ],
+  },
+
+  experimental: {
+    // Rewrites barrel imports to deep paths so a single icon does not pull
+    // the whole package into the client bundle.
+    optimizePackageImports: ["motion", "lucide-react"],
+  },
+
+  // mongoose/nodemailer are server-only; keep them out of the bundler graph.
+  serverExternalPackages: ["mongoose", "nodemailer"],
+
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+    ];
   },
 };
 
